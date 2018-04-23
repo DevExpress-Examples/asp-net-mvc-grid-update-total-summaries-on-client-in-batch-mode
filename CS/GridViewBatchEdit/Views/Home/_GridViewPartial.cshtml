@@ -1,0 +1,68 @@
+@{
+    var grid = Html.DevExpress().GridView<Models.GridDataItem>(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Home", Action = "GridViewPartial" };
+        settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "Home", Action = "BatchUpdatePartial" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+        settings.Width = 600;
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+
+        settings.KeyFieldName = "ID";
+
+        settings.Columns.Add(m=>m.C1);
+        settings.Columns.Add(m=>m.C2,column =>
+        {
+            
+            column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+            column.Width = 120;
+            ASPxSummaryItem summaryItem = new ASPxSummaryItem(column.FieldName, DevExpress.Data.SummaryItemType.Sum);
+            summaryItem.Tag = column.FieldName + "_Sum";
+            summaryItem.DisplayFormat = "{0}";
+            settings.TotalSummary.Add(summaryItem);
+
+            column.SetFooterTemplateContent(c =>
+            {
+                Html.DevExpress().Label(lbSettings =>
+                {
+                    string fieldName = (c.Column as GridViewDataColumn).FieldName;
+                    lbSettings.Name = "labelSum";
+                    lbSettings.Properties.EnableClientSideAPI = true;
+                    ASPxSummaryItem summaryItem1 = c.Grid.TotalSummary.First(i => i.Tag == (fieldName + "_Sum"));
+                    lbSettings.Text = c.Grid.GetTotalSummaryValue(summaryItem1).ToString();
+                }).Render();
+            });
+        });
+        settings.Columns.Add(m => m.C3);
+        settings.Columns.Add(m => m.C4, column =>
+        {
+            
+            column.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+        settings.Columns.Add(m => m.C5,column =>
+        {
+            
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+
+
+        settings.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
+        settings.ClientSideEvents.BatchEditRowDeleting = "OnBatchEditRowDeleting";
+        settings.ClientSideEvents.BatchEditChangesCanceling = "OnChangesCanceling";
+        
+        settings.CellEditorInitialize = (s, e) =>
+        {
+            ASPxEdit editor = (ASPxEdit)e.Editor;
+            editor.ValidationSettings.Display = Display.Dynamic;
+        };
+
+        settings.Settings.ShowFooter = true;       
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
