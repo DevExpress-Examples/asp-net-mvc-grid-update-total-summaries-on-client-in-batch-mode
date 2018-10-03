@@ -12,7 +12,7 @@ Starting with v16.1, it's possible to handle the&nbsp;<a href="https://documenta
 
 
 ```cs
-settings.Columns.Add(column =&gt;
+settings.Columns.Add(column =>
 {
 	column.FieldName = "C2";
 	column.ColumnType = MVCxGridViewColumnType.SpinEdit;
@@ -29,14 +29,14 @@ settings.Columns.Add(column =&gt;
 
 
 ```cs
-	column.SetFooterTemplateContent(c =&gt;
+	column.SetFooterTemplateContent(c =>
 	{
-		Html.DevExpress().Label(lbSettings =&gt;
+		Html.DevExpress().Label(lbSettings =>
 		{
 			string fieldName = (c.Column as GridViewDataColumn).FieldName;
 			lbSettings.Name = "labelSum";
 			lbSettings.Properties.EnableClientSideAPI = true;
-			ASPxSummaryItem summaryItem1 = c.Grid.TotalSummary.First(i =&gt; i.Tag == (fieldName + "_Sum"));
+			ASPxSummaryItem summaryItem1 = c.Grid.TotalSummary.First(i => i.Tag == (fieldName + "_Sum"));
 			lbSettings.Text = c.Grid.GetTotalSummaryValue(summaryItem1).ToString();
 		}).Render();
 	});
