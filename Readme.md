@@ -9,7 +9,10 @@ This example demonstrates how to update total summaries on the client side when
 
 To implement the required task, perform the following steps:<br><br>
 <p>1.&nbsp;Add a total summary item for a required column. The&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebASPxGridViewASPxSummaryItem_Tagtopic">Tag</a>&nbsp;property is used to find this summary item and&nbsp;get its value:&nbsp;</p>
-<code lang="cs">settings.Columns.Add(column =&gt;
+
+
+```cs
+settings.Columns.Add(column =>
 {
 	column.FieldName = "C2";
 	column.ColumnType = MVCxGridViewColumnType.SpinEdit;
@@ -18,33 +21,51 @@ To implement the required task, perform the following steps:<br><br>
 	summaryItem.Tag = column.FieldName + "_Sum";
 	summaryItem.DisplayFormat = "{0}";
 	settings.TotalSummary.Add(summaryItem);
-});</code>
+});
+```
+
+
 <p>&nbsp;2. Replace&nbsp;the summary item with a custom Footer template:</p>
-<code lang="cs">	column.SetFooterTemplateContent(c =&gt;
+
+
+```cs
+	column.SetFooterTemplateContent(c =>
 	{
-		Html.DevExpress().Label(lbSettings =&gt;
+		Html.DevExpress().Label(lbSettings =>
 		{
 			string fieldName = (c.Column as GridViewDataColumn).FieldName;
 			lbSettings.Name = "labelSum";
 			lbSettings.Properties.EnableClientSideAPI = true;
-			ASPxSummaryItem summaryItem1 = c.Grid.TotalSummary.First(i =&gt; i.Tag == (fieldName + "_Sum"));
+			ASPxSummaryItem summaryItem1 = c.Grid.TotalSummary.First(i => i.Tag == (fieldName + "_Sum"));
 			lbSettings.Text = c.Grid.GetTotalSummaryValue(summaryItem1).ToString();
 		}).Render();
-	});</code>
+	});
+```
+
+
 <p><br>&nbsp;3. Handle the grid's client-side&nbsp;<a href="https://documentation.devexpress.com/#AspNet/DevExpressWebASPxGridViewScriptsASPxClientGridView_BatchEditEndEditingtopic">BatchEditEndEditing</a>&nbsp;event to calculate a new summary value and set it when any cell value has been changed:</p>
-<code lang="js">function OnBatchEditEndEditing(s, e) {
+
+
+```js
+function OnBatchEditEndEditing(s, e) {
     var originalValue = s.batchEditApi.GetCellValue(e.visibleIndex, "C2");
     var newValue = e.rowValues[(s.GetColumnByField("C2").index)].value;
 
     var dif = newValue - originalValue;
     labelSum.SetValue((parseFloat(labelSum.GetValue()) + dif).toFixed(1));
-}</code>
-<p>4. Finally, replace standard <em><strong>Save changes</strong></em> and <em><strong>Cancel changes</strong></em> buttons with custom buttons to refresh a summary value when all modifications have been canceled:</p>
-<code lang="cs">settings.SetStatusBarTemplateContent(c =&gt;
-{
-	ViewContext.Writer.Write("&lt;div style='text-align: right'&gt;");
+}
+```
 
-	Html.DevExpress().HyperLink(hlSettings =&gt;
+
+<p>4. Finally, replace standard <em><strong>Save changes</strong></em> and <em><strong>Cancel changes</strong></em> buttons with custom buttons to refresh a summary value when all modifications have been canceled:</p>
+
+
+```cs
+settings.SetStatusBarTemplateContent(c =>
+{
+	ViewContext.Writer.Write("<div style='text-align: right'>");
+
+	Html.DevExpress().HyperLink(hlSettings =>
 	{
 		hlSettings.Name = "hlSave";
 		hlSettings.Properties.Text = "Save changes";
@@ -52,15 +73,18 @@ To implement the required task, perform the following steps:<br><br>
 	}).Render();
 	ViewContext.Writer.Write(" ");
 
-	Html.DevExpress().HyperLink(hlSettings =&gt;
+	Html.DevExpress().HyperLink(hlSettings =>
 	{
 		hlSettings.Name = "hlCancel";
 		hlSettings.Properties.Text = "Cancel changes";
 		hlSettings.Properties.ClientSideEvents.Click = "function(s, e){ GridView.CancelEdit(); GridView.Refresh(); }";
 	}).Render();
 
-	ViewContext.Writer.Write("&lt;/div&gt;");
-});</code>
+	ViewContext.Writer.Write("</div>");
+});
+```
+
+
 
 <br/>
 
