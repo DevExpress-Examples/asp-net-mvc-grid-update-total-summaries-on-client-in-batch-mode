@@ -8,6 +8,7 @@
 <!-- default file list end -->
 # GridView - How to update total summaries on the client side in Batch Edit mode
 
+<p>Starting with v18.2 we support callbacks and keep the changes safe while a user navigates via pages, filters and sorts the grid data. If you use this version and above, please copy the 18.2.3+ branch as approaches to update summaries differ in new versions and old ones.</p>
 
 This example demonstrates how to update total summaries on the client side when GridView is in Batch Edit mode. 
 <p>You can find detailed steps by clicking below the "Show Implementation Details" link .<br><strong><br>See Also:<br></strong><a href="https://www.devexpress.com/Support/Center/p/T124603">GridView - Batch Edit - How to calculate values on the fly</a> <br><a href="https://www.devexpress.com/Support/Center/p/T124151">GridView - Batch Edit - How to calculate unbound column and total summary values on the fly</a> <br><br><strong>ASP.NET Web Forms Example:</strong><a href="https://www.devexpress.com/Support/Center/p/T116925"><br></a> <a href="https://www.devexpress.com/Support/Center/p/T114923">ASPxGridView - How to update total summaries on the client side in Batch Edit mode</a> </p>

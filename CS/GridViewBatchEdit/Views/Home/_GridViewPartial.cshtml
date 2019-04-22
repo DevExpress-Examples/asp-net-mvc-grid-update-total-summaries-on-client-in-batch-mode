@@ -15,7 +15,7 @@
         settings.Columns.Add(m=>m.C1);
         settings.Columns.Add(m=>m.C2,column =>
         {
-            
+
             column.ColumnType = MVCxGridViewColumnType.SpinEdit;
             column.Width = 120;
             ASPxSummaryItem summaryItem = new ASPxSummaryItem(column.FieldName, DevExpress.Data.SummaryItemType.Sum);
@@ -38,12 +38,12 @@
         settings.Columns.Add(m => m.C3);
         settings.Columns.Add(m => m.C4, column =>
         {
-            
+
             column.ColumnType = MVCxGridViewColumnType.CheckBox;
         });
         settings.Columns.Add(m => m.C5,column =>
         {
-            
+
             column.ColumnType = MVCxGridViewColumnType.DateEdit;
         });
 
@@ -51,14 +51,15 @@
         settings.ClientSideEvents.BatchEditEndEditing = "OnBatchEditEndEditing";
         settings.ClientSideEvents.BatchEditRowDeleting = "OnBatchEditRowDeleting";
         settings.ClientSideEvents.BatchEditChangesCanceling = "OnChangesCanceling";
-        
+        settings.ClientSideEvents.EndCallback = "OnEndCallback";
+
         settings.CellEditorInitialize = (s, e) =>
         {
             ASPxEdit editor = (ASPxEdit)e.Editor;
             editor.ValidationSettings.Display = Display.Dynamic;
         };
 
-        settings.Settings.ShowFooter = true;       
+        settings.Settings.ShowFooter = true;
     });
     if (ViewData["EditError"] != null)
     {
