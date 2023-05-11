@@ -13,7 +13,7 @@
 <!-- default file list end -->
 # GridView - How to update total summaries on the client side in Batch Edit mode
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/t137186/)**
+**[[Run Online]](https://codecentral.devexpress.com/128550781/)**
 <!-- run online end -->
 
 
