@@ -12,9 +12,6 @@
 * **[Index.cshtml](./CS/GridViewBatchEdit/Views/Home/Index.cshtml)**
 <!-- default file list end -->
 # GridView - How to update total summaries on the client side in Batch Edit mode
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/128550781/)**
-<!-- run online end -->
 
 
 This example demonstrates how to update total summaries on the client side when GridView is in Batch Edit mode. 
