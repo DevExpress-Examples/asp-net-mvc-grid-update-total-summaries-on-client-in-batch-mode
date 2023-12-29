@@ -4,9 +4,6 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 # Grid View for ASP.NET MVC - How to update total summaries on the client in batch edit mode
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/128550781/)**
-<!-- run online end -->
 
 This example demonstrates how to replace a summary item with a custom footer template to calculate the total summary dynamically in batch edit mode.
 
