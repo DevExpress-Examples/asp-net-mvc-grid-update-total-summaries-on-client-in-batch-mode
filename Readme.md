@@ -81,7 +81,7 @@ Follow the steps below to update total summaries on the client in batch edit mod
 * [Grid View for ASP.NET MVC - How to calculate values dynamically in batch edit mode](https://github.com/DevExpress-Examples/asp-net-mvc-grid-dynamic-calculation-in-batch-mode)
 * [Grid View for ASP.NET MVC - How to calculate values and total summaries dynamically in batch edit mode](https://github.com/DevExpress-Examples/gridview-batch-edit-how-to-calculate-unbound-column-and-total-summary-values-on-the-fly-t124151)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-mvc-grid-update-total-summaries-on-client-in-batch-mode&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=asp-net-mvc-grid-update-total-summaries-on-client-in-batch-mode&~~~was_helpful=no)
 
